@@ -9,8 +9,9 @@ import { createComment } from './controllers/commentController.js';
 
 import {handleValidationErrors, checkAuth} from './utils/index.js';
 
+
 // Connect to the MongoDB database
-mongoose.connect('mongodb+srv://Yevhen:192837465@cluster0.rtjgebg.mongodb.net/blog?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URL)
     .then(() => {
         console.log('Database is ok!')
     })
@@ -68,7 +69,7 @@ app.patch(
     postController.update,
 );
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
     if (err) {
         return console.log(err);
     }
