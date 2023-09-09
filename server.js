@@ -5,7 +5,6 @@ import cors from 'cors';
 
 import { registerValidation, loginValidation, postCreateValidation } from "./validations/validations.js";
 import {userController,postController} from './controllers/index.js';
-import { createComment } from './controllers/commentController.js';
 
 import {handleValidationErrors, checkAuth} from './utils/index.js';
 
@@ -55,7 +54,6 @@ app.get('/popular', postController.getAllPopular);
 //posts functionality
 app.get('/posts', postController.getAll);
 app.get('/posts/tag/:tag', postController.getPostsByTag);
-app.post('/posts/:id/comments', checkAuth, (req, res) => createComment(req, res));
 app.get('/posts/popular', postController.getAllPopular);
 app.get('/posts/tags', postController.getLastTags);
 app.get('/posts/:id', postController.getOne);
